@@ -1,0 +1,17 @@
+services:
+  autocut:
+    build: .
+    ports:
+      - "8787:10000"
+    environment:
+      PORT: 10000
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-6-luna}
+      TRANSCRIBE_MODEL: ${TRANSCRIBE_MODEL:-gpt-transcribe}
+      FFMPEG_BIN: ffmpeg
+      FFPROBE_BIN: ffprobe
+      FFMPEG_PRESET: veryfast
+      FFMPEG_CRF: "20"
+      MAX_UPLOAD_MB: "1500"
+    volumes:
+      - ./backend/data:/app/backend/data
